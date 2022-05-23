@@ -1,0 +1,36 @@
+############week10 files############
+import os
+import csv
+#
+#   Check if directory exist
+def createCSV(filename, directory, name, address, phoneNumber):
+    #   Check if directory 
+        checkDir = os.path.exists(directory)
+        if not checkDir:
+            os.makedirs(directory)
+            print("Directory already exist.")
+    #   Check if File Exist
+        createFile = os.path.join(directory,filename)
+        checkFile = os.path.isfile(createFile)
+        if not checkFile:
+            os.path.join(createFile)       
+            print("Creating File in Directory")
+    #   Create CSV File 
+        createFileName = (filename + '.csv')
+        with open(createFileName, "w") as csvFile:
+            filewriter = csv.writer(csvFile, delimiter=',',
+                            quotechar='|', quoting=csv.QUOTE_MINIMAL)
+            filewriter.writerow(['Name', name])
+            filewriter.writerow(['Address', address])
+            filewriter.writerow(['PhoneNumber', phoneNumber])
+            print("Creating CSV file")
+    #   Return File Name info
+        return(createCSV)
+
+userDir = input('Please enter a directory location: ')
+userFile = input('Please enter filename: ')
+userName = input('Please enter Name: ')
+userAddress = input('Please enter your address: ')
+userPhoneNumber = input('Please enter for Phone Number: ')
+
+createCSV(directory=userDir, filename=userFile, name=userName, address=userAddress, phoneNumber=userPhoneNumber)
